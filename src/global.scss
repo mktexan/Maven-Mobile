@@ -1,0 +1,655 @@
+// http://ionicframework.com/docs/theming/
+@import "~@ionic/angular/css/core.css";
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+@import "theme/animate.css";
+
+@font-face {
+  font-family: "Play";
+  src: url("./assets/fonts/Play-Regular.ttf"); //mine
+}
+
+* {
+  font-family: "Play" !important;
+}
+
+ion-footer {
+  &.footer-md::before {
+    background-image: none;
+  }
+}
+
+ion-item {
+  --ion-item-background: transparent;
+}
+
+// backgrounds //
+.bg-white {
+  background-color: #fff;
+}
+
+.bg-light {
+  background-color: var(--ion-color-light);
+}
+
+.bg-dark {
+  background-color: var(--ion-color-dark);
+}
+
+.bg-primary {
+  background-color: var(--ion-color-primary);
+}
+
+.bg-secondary {
+  background-color: var(--ion-color-secondary);
+}
+
+.bg-tertiary {
+  background-color: var(--ion-color-tertiary);
+}
+
+.bg-profile {
+  background-image: linear-gradient(135deg, var(--ion-color-primary), var(--ion-color-secondary));
+}
+
+.bg-main {
+  background-image: linear-gradient(-135deg, var(--ion-color-medium), var(--ion-color-light));
+}
+
+.item-inner {
+  border-bottom-color: #e99568 !important;
+  box-shadow: none !important;
+}
+
+// Helpers //
+.w100 {
+  width: 100%;
+}
+
+.bold,
+.fw500 {
+  font-weight: 500 !important;
+}
+
+.fw700 {
+  font-weight: 700 !important;
+}
+
+.text08 {
+  font-size: 14px;
+}
+
+.text1 {
+  font-size: 1rem !important;
+}
+
+.text12 {
+  font-size: 1.2rem;
+}
+
+.text15 {
+  font-size: 1.5rem;
+}
+
+.text20 {
+  font-size: 2rem;
+}
+
+.text25 {
+  font-size: 2.5rem;
+}
+
+.testImage {
+  // background-image: url("/assets/img/maven-black.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.fontNew15 {
+  font-size: 40px;
+  margin-top: 10px;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.text-primary {
+  color: var(--ion-color-primary);
+}
+
+.text-secondary {
+  color: var(--ion-color-secondary);
+}
+
+.text-tertiary {
+  color: var(--ion-color-tertiary);
+}
+
+.text-medium {
+  color: var(--ion-color-medium);
+}
+
+.text-light {
+  color: var(--ion-color-light);
+}
+
+.text-dark {
+  color: var(--ion-color-dark);
+}
+
+// menu //
+// Menu user profile
+ion-toolbar.user-profile {
+  .user-avatar {
+    width: 68px;
+    height: 68px;
+  }
+
+  .item-inner {
+    border-width: 0;
+  }
+}
+
+// Custom fireIonic toolbar (overriding Shadow DOM)
+ion-toolbar {
+  &.ion-color-primary {
+    --ion-color-base: var(--ion-color-primary) !important;
+  }
+}
+
+// Android card shadow
+ion-card {
+  &.sc-ion-card-md-h {
+    box-shadow: 0 2px 4px rgba(var(--ion-color-dark-rgb), 0.24);
+  }
+}
+
+// style for auth pages
+.auth-page {
+  background-image: linear-gradient(135deg, var(--ion-color-dark), var(--ion-color-primary));
+
+  .grid {
+    padding: 0;
+
+    .col {
+      padding: 0;
+    }
+  }
+
+  .btn-group {
+    .button-ios,
+    .button-md {
+      border-radius: 0;
+
+      &:first-of-type {
+        border-radius: 2px 0 0 2px;
+      }
+
+      &:last-of-type {
+        border-radius: 0 2px 2px 0;
+      }
+    }
+  }
+
+  .auth-content {
+    max-width: 720px;
+    margin: 0 auto;
+
+    .logo {
+      width: 150px;
+      height: 150px;
+      margin: 20px auto 8px;
+      border-radius: 50%;
+      background: url("/assets/img/maven-black.jpg") no-repeat;
+      background-size: 100%;
+    }
+
+    .list-form {
+      padding: 0;
+      margin-bottom: 0;
+
+      ion-item {
+        background: none;
+        padding: 0;
+
+        &:first-child {
+          border-top: none;
+        }
+
+        &:after {
+          display: none;
+        }
+
+        ion-label {
+          font-size: 1em;
+          color: var(--ion-color-light);
+        }
+
+        input {
+          color: var(--ion-color-light);
+        }
+      }
+    }
+  }
+}
+
+.vatar img {
+  clip-path: circle(50% at 50% 50%);
+}
+
+.mto {
+  margin-top: 12px;
+
+  ion-icon {
+    margin-bottom: -2px;
+  }
+}
+
+// Business and Influencer pages
+
+.icon-specs {
+  position: absolute;
+  left: 37px;
+  right: 0px;
+  font-size: 11px;
+  bottom: 41px;
+}
+
+.width-fix {
+  width: inherit !important;
+}
+
+.relative {
+  position: relative;
+}
+
+.img-specs {
+  height: 40px !important;
+  width: 40px !important;
+}
+
+.recent-conversation-icon {
+  position: absolute;
+  left: 41px;
+  right: 0px;
+  font-size: 12px;
+  bottom: 52px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.faded-text {
+  color: #42424280;
+}
+
+.maven-text {
+  color: var(--ion-color-tertiary);
+}
+
+.padding-item {
+  padding: 10px;
+}
+
+.with-full {
+  width: 100%;
+}
+
+.flexed-left {
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+}
+
+.flexed-column {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.chats-small-pic {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.black {
+  background-color: black;
+}
+
+.full-height {
+  -webkit-appearance: none;
+  height: 100%;
+  overflow-y: hidden;
+}
+
+.unread-mail {
+  position: absolute;
+  left: 68px;
+  right: 0px;
+  font-size: 18px;
+  bottom: 32px;
+}
+
+.centered-buttons {
+  position: absolute;
+  top: 21%;
+  width: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.white {
+  background-color: white;
+  // height: 100%;
+}
+
+.bottom {
+  position: relative;
+  height: 100%;
+}
+
+.ion-padding-fix {
+  padding: 5px;
+}
+
+.chats-small-pic {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.user-typing-icon {
+  height: 18px;
+  position: absolute;
+  top: 49%;
+  left: 88%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.user-typing-spinner{
+  height: 18px;
+  position: absolute;
+  top: 49%;
+  left: 130%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.chats-user-avatar {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.avatar {
+  position: relative;
+  margin: auto;
+}
+
+.link-social {
+  width: 90%;
+  position: relative;
+  cursor: pointer;
+  border-radius: 9px;
+  margin: 20px 0px;
+  background-color: #ffffff;
+  color: #000000;
+  box-shadow: 0px 0px 2px rgb(0, 0, 0, 0);
+}
+
+.link-find-business {
+  width: 90%;
+  position: relative;
+  cursor: pointer;
+  border-radius: 9px;
+  margin: 17px 0px;
+  background-color: #ffffff;
+  color: #000000;
+  box-shadow: 3px 5px 2px rgba(0, 17, 52, 0.1);
+  -webkit-box-shadow: 3px 5px 2px rgba(0, 17, 52, 0.1);
+  -moz-box-shadow: 3px 5px 2px rgba(0, 17, 52, 0.1);
+}
+
+.link-color {
+  color: white !important;
+}
+
+.connected {
+  color: #2fc9a7;
+}
+
+.connecting {
+  color: #bbaa16;
+}
+
+.disconnected {
+  color: rgb(180, 73, 73);
+}
+
+.link-color-white {
+  color: white !important;
+}
+
+.inner-2 {
+  display: flex;
+  justify-content: center;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 70px;
+}
+
+.footer-fixed {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 70px;
+}
+
+create-space {
+  display: flex;
+  justify-content: space-between;
+}
+
+.influencer {
+  position: relative; /* added */
+  background-color: black;
+  height: 50%;
+}
+
+.dark {
+  color: black;
+}
+
+.aligned-center {
+  align-items: center;
+}
+
+.flex-set {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  text-align: center;
+}
+
+.flexed {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.flexed-row{
+  position: relative;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flexed-set {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+}
+
+.custom-button-height {
+  height: 20px !important;
+}
+
+.setup {
+  height: 50%;
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+  background-color: white;
+}
+
+.icon-size {
+  font-size: 25px !important;
+}
+
+.add-pic-icon {
+  font-size: 40px;
+}
+
+.chats-pic {
+  height: 25px;
+}
+
+.text-holder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 25px;
+}
+
+.unread-mail-icon {
+  position: absolute;
+  top: 52%;
+  left: 94%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  font-size: 19px;
+}
+
+.head-info {
+  font-size: 13px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid block;
+  height: 100%;
+}
+.box1 {
+  // flex: 1;
+  --background: var(--ion-color-dark);
+}
+.box2 {
+  flex: 1;
+  background-color: white;
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+  height: 100%;
+}
+
+.centered {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.centered-no-margin {
+  text-align: center;
+}
+
+.centered-content {
+  display: flex;
+  justify-content: center;
+}
+
+.centered-content-column {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inline {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.inline2 {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.logo {
+  font-size: 25px;
+}
+
+.descriptive-text {
+  font-size: 13px;
+}
+
+.logo-header {
+  max-width: 22px !important;
+  border-radius: 50%;
+}
+
+.not-active {
+  color: white;
+}
+
+.button-width {
+  width: 80%;
+}
+
+.acceptButton {
+  color: #717171;
+}
+
+.declineButton {
+  color: #ff9186;
+}

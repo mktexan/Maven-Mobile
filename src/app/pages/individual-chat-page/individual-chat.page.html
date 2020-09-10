@@ -1,0 +1,159 @@
+<ion-header class="ion-no-border ion-no-lines">
+    <ion-toolbar class="ion-no-border ion-no-lines">
+        <div class="flexed ion-no-border ion-no-lines">
+            <div class="flex-set-row-full ion-no-border ion-no-lines">
+                <div>
+                    <ion-avatar slot="start" class="avatar user-avatar">
+                        <img [src]="profilePhoto" class="slide-image chats-small-pic">
+                        <ion-icon name="radio-button-on-outline" *ngIf="userActive" class="icon-specs connected">
+                        </ion-icon>
+                        <ion-icon name="radio-button-on-outline" *ngIf="!userActive" class="icon-specs disconnected">
+                        </ion-icon>
+                    </ion-avatar>
+                </div>
+                <div>
+                    <div class="ion-no-border ion-no-lines" lines="none">
+                        <p>{{targetedUser}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-set ion-padding" (click)="goBack()">
+                <ion-icon name="chevron-back-outline" class="icon-size"></ion-icon>
+            </div>
+        </div>
+    </ion-toolbar>
+</ion-header>
+<ion-content #chatContent color="light" class='ion-no-lines'>
+    <div class="container ion-no-border ion-lines-lines fixed-cont">
+        <div>
+            <ion-list lines="none" id="messagesContent">
+                <div *ngIf="!chatLoaded">
+                    <ion-list>
+                        <ion-item>
+                            <ion-avatar slot="start">
+                                <ion-skeleton-text animated></ion-skeleton-text>
+                            </ion-avatar>
+                            <ion-label>
+                                <h3>
+                                    <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                                </h3>
+                                <p>
+                                    <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                                </p>
+                                <p>
+                                    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                                </p>
+                            </ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-avatar slot="start">
+                                <ion-skeleton-text animated></ion-skeleton-text>
+                            </ion-avatar>
+                            <ion-label>
+                                <h3>
+                                    <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                                </h3>
+                                <p>
+                                    <ion-skeleton-text animated style="width: 80%;  height: 50px;"></ion-skeleton-text>
+                                </p>
+                                <p>
+                                    <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                                </p>
+                            </ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-avatar slot="start">
+                                <ion-skeleton-text animated></ion-skeleton-text>
+                            </ion-avatar>
+                            <ion-label>
+                                <h3>
+                                    <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                                </h3>
+                                <p>
+                                    <ion-skeleton-text animated style="width: 100%; height: 100px;"></ion-skeleton-text>
+                                </p>
+                                <p>
+                                    <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                                </p>
+                            </ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-avatar slot="start">
+                                <ion-skeleton-text animated></ion-skeleton-text>
+                            </ion-avatar>
+                            <ion-label>
+                                <h3>
+                                    <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                                </h3>
+                                <p>
+                                    <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                                </p>
+                                <p>
+                                    <ion-skeleton-text animated style="width: 60%; height: 20px;"></ion-skeleton-text>
+                                </p>
+                            </ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-avatar slot="start">
+                                <ion-skeleton-text animated></ion-skeleton-text>
+                            </ion-avatar>
+                            <ion-label>
+                                <h3>
+                                    <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                                </h3>
+                                <p>
+                                    <ion-skeleton-text animated style="width: 80%; height: 45px;"></ion-skeleton-text>
+                                </p>
+                            </ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-avatar slot="start">
+                                <ion-skeleton-text animated></ion-skeleton-text>
+                            </ion-avatar>
+                            <ion-label>
+                                <h3>
+                                    <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                                </h3>
+                                <p>
+                                    <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                                </p>
+                                <p>
+                                    <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                                </p>
+                            </ion-label>
+                        </ion-item>
+                    </ion-list>
+                </div>
+                <ion-item *ngFor="let message of messages" [ngClass]="{'other': message.from === myId}"
+                    class="messages ion-no-lines">
+                    <div class="flexed-center">
+                        <div class="message" [ngClass]="{'slide-right': hideTime, '': !hideTime}">
+                            <span>{{ message?.text || message?.message}}</span>
+                            <p class="faded-text">{{fixDate(message?.time)}}</p>
+                        </div>
+                    </div>
+                </ion-item>
+                <ion-label id="myLabel">&nbsp;</ion-label>
+            </ion-list>
+        </div>
+    </div>
+</ion-content>
+<!-- Footer without a border -->
+<ion-footer class="ion-no-border">
+    <div class="flex-set-row ion-no-border ion-no-lines">
+        <ion-avatar slot="start" class="avatar user-avatar">
+            <ion-icon name="phone-portrait-outline" class="user-typing-icon"></ion-icon>
+            <img [src]="profilePhoto" class="slide-image chats-user-avatar">
+            <ion-spinner *ngIf="userIsTyping" name="dots" class="user-typing-spinner"></ion-spinner>
+        </ion-avatar>
+    </div>
+    <ion-toolbar>
+        <ion-input [(ngModel)]="senderInput" #sender placeholder="Type your message..." id="senderInput"
+            autocorrect="on" spellcheck="true" (ionInput)="sendTypingAlert()"></ion-input>
+        <div class="ion-padding">
+            <ion-button expand="block" type="submit" class="ion-no-margin" (click)="sendMessage(sender.value)">Send
+                Message
+            </ion-button>
+        </div>
+    </ion-toolbar>
+</ion-footer>

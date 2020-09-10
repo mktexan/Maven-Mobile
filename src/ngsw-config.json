@@ -1,0 +1,43 @@
+{
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "fireIonic2",
+      "installMode": "prefetch",
+      "resources": {
+        "files": [
+          "/robots.txt",
+          "/favicon.ico",
+          "/index.html",
+          "/*.css",
+          "/*.js"
+        ]
+      }
+    }, 
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": [
+          "/assets/**",
+          "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
+        ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "ionictheme.com",
+      "urls": [
+
+      ],
+      "cacheConfig": {
+        "maxSize": 100,
+        "maxAge": "7d",
+        "timeout": "1m",
+        "strategy": "performance"
+      }
+    }
+  ]
+}

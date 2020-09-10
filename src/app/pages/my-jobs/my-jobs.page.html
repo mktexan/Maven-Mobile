@@ -1,0 +1,188 @@
+<ion-header class="">
+    <ion-toolbar color="light" class="ion-no-lines">
+        <div class="flexed">
+            <div>
+                <ion-buttons slot="start">
+                    <ion-menu-button color="dark"></ion-menu-button>
+                </ion-buttons>
+            </div>
+            <div>
+                <div class="text-holder link-color">
+                    <h5 color="dark" style="color: black;">My Jobs</h5>
+                </div>
+            </div>
+            <div>
+                <div class="flex-set " (click)="goBack()">
+                    <ion-icon name="chevron-back-outline" class="icon-size"></ion-icon>
+                </div>
+            </div>
+        </div>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+    <div *ngIf="!jobsLoaded">
+        <ion-list>
+            <ion-item>
+                <ion-avatar slot="start">
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                </ion-avatar>
+                <ion-label>
+                    <h3>
+                        <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                    </h3>
+                    <p>
+                        <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                    </p>
+                    <p>
+                        <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                    </p>
+                </ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-avatar slot="start">
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                </ion-avatar>
+                <ion-label>
+                    <h3>
+                        <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                    </h3>
+                    <p>
+                        <ion-skeleton-text animated style="width: 80%;  height: 50px;"></ion-skeleton-text>
+                    </p>
+                    <p>
+                        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                    </p>
+                </ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-avatar slot="start">
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                </ion-avatar>
+                <ion-label>
+                    <h3>
+                        <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                    </h3>
+                    <p>
+                        <ion-skeleton-text animated style="width: 100%; height: 100px;"></ion-skeleton-text>
+                    </p>
+                    <p>
+                        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                    </p>
+                </ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-avatar slot="start">
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                </ion-avatar>
+                <ion-label>
+                    <h3>
+                        <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                    </h3>
+                    <p>
+                        <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                    </p>
+                    <p>
+                        <ion-skeleton-text animated style="width: 60%; height: 20px;"></ion-skeleton-text>
+                    </p>
+                </ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-avatar slot="start">
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                </ion-avatar>
+                <ion-label>
+                    <h3>
+                        <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                    </h3>
+                    <p>
+                        <ion-skeleton-text animated style="width: 80%; height: 45px;"></ion-skeleton-text>
+                    </p>
+                </ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-avatar slot="start">
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                </ion-avatar>
+                <ion-label>
+                    <h3>
+                        <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                    </h3>
+                    <p>
+                        <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                    </p>
+                    <p>
+                        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                    </p>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+    </div>
+    <div class="centered">
+        <ion-list>
+            <ion-card *ngIf="!hasJobs">
+                <ion-card-header>
+                    <ion-card-title>No Jobs Created</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                    Head on over to the Post Jobs page to create a job!
+                </ion-card-content>
+                <ion-item>
+                    <ion-badge slot="start" color="tertiary"></ion-badge>
+                </ion-item>
+            </ion-card>
+            <ion-item *ngFor="let job of jobList" id="{{job._id}}" class="animated bounceInLeft ion-no-lines"
+                lines="none">
+                <ion-card class="centered-no-margin" style="width: 100%;">
+                    <ion-card-header>
+                        <ion-card-title>{{job.title}}</ion-card-title>
+                        <br>
+                        <ion-card-subtitle>{{job.companyName}}</ion-card-subtitle>
+                        <ion-card-subtitle><i>{{job.location}}</i></ion-card-subtitle>
+                        <ion-card-subtitle><i>Job created {{fixDate(job.creationDate)}}</i></ion-card-subtitle>
+                    </ion-card-header>
+                    <br>
+                    <ion-card-content>
+                        <p>{{job.description}}</p>
+                        <br>
+                        <br>
+                        <ion-chip outline *ngFor="let jobTags of job.tags" class="animated">
+                            <ion-icon name="pricetag" color="tertiary"></ion-icon>
+                            <ion-label>{{jobTags}}</ion-label>
+                        </ion-chip>
+                        <br>
+                        <br>
+                        <div class="flexed">
+                            <div>
+                                <ion-item lines="none">
+                                    <ion-badge slot="start" color="tertiary" class="link-color">
+                                        {{formatCurrency(job.pay)}}
+                                    </ion-badge>
+                                </ion-item>
+                            </div>
+                            <div>
+                                <ion-item lines="none">
+                                    <ion-button color="danger" size="small" class="custom-button-height"
+                                        (click)="deleteJob(job._id)">Delete Job
+                                    </ion-button>
+                                </ion-item>
+                            </div>
+                        </div>
+                        <br>
+                        <h2>Stats</h2>
+                        <div class="flexed-set">
+                            <div>
+                                <h3>Views</h3>
+                                <ion-badge color="dark" class="text08">11</ion-badge>
+                            </div>
+                            <div>
+                                <h3>Apps</h3>
+                                <ion-badge color="dark" class="text08">25</ion-badge>
+                            </div>
+                        </div>
+                    </ion-card-content>
+                </ion-card>
+            </ion-item>
+        </ion-list>
+    </div>
+</ion-content>

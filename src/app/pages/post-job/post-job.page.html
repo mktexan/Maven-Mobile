@@ -1,0 +1,113 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar color="light" class="ion-no-lines">
+        <div class="flexed">
+            <div>
+                <ion-buttons slot="start">
+                    <ion-menu-button color="dark"></ion-menu-button>
+                </ion-buttons>
+            </div>
+            <div>
+                <div class="text-holder link-color">
+                    <h5 color="dark" class="dark">Create Job</h5>
+                </div>
+            </div>
+            <div>
+                <div class="flex-set " (click)="goBack()">
+                    <ion-icon name="chevron-back-outline" class="icon-size"></ion-icon>
+                </div>
+            </div>
+        </div>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+    <div *ngIf="!previewingForm">
+        <ion-list>
+            <ion-radio-group value="custom">
+                <ion-item>
+                    <ion-label>Add Custom Tags</ion-label>
+                    <ion-radio slot="start" value="custom" (click)="customTags()"></ion-radio>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>Use My Tags List</ion-label>
+                    <ion-radio slot="start" value="myTags" (click)="myTagsList()"></ion-radio>
+                </ion-item>
+
+            </ion-radio-group>
+        </ion-list>
+        <ion-list class="text-center" *ngIf="showSearchBar">
+            <ion-chip outline *ngFor="let tag of userTags" class="animated">
+                <ion-icon name="pricetag" color="tertiary"></ion-icon>
+                <ion-label>{{tag}}</ion-label>
+                <ion-icon name="close" (click)=removeTag(tag)></ion-icon>
+            </ion-chip>
+        </ion-list>
+        <br>
+        <ion-searchbar *ngIf="showSearchBar" #searchBar placeHolder="Add Tags that describe your job"
+            (search)="addTag(searchBar.value)">
+        </ion-searchbar>
+        <br>
+
+        <form [formGroup]="jobForm" class="list-form">
+            <ion-item>
+                <ion-label position="stacked">Job Title<ion-text color="danger"></ion-text>
+                </ion-label>
+                <ion-input required type="text" placeHolder="..." formControlName="jobTitle">
+                </ion-input>
+            </ion-item>
+            <br>
+            <br>
+            <ion-item>
+                <ion-label position="stacked">Job Location<ion-text color="danger"></ion-text>
+                </ion-label>
+                <!-- <ion-input required type="text" placeHolder="..." formControlName="jobLocation">
+                </ion-input> -->
+                <ion-input type="text" class="form-control" (keydown.enter)="$event.preventDefault()"
+                    placeholder="Search Nearest Location" formControlName="jobLocation" #search></ion-input>
+            </ion-item>
+            <br>
+            <br>
+            <ion-item>
+                <ion-label position="stacked">Job Description<ion-text color="danger"></ion-text>
+                </ion-label>
+                <ion-input required type="text" placeHolder="..." formControlName="jobDescription"></ion-input>
+            </ion-item>
+            <br>
+            <br>
+            <ion-item>
+                <ion-input required type="number" formControlName="jobPay" placeHolder="Job Pay - $5 minimum"
+                    (ionChange)="formatCurrency($event)">
+                </ion-input>
+                <ion-label color="tertiary">{{currencyValue}}</ion-label>
+            </ion-item>
+        </form>
+        <br>
+        <br>
+        <section class="centered-content">
+            <ion-button expand="block" class="button-width" (click)="previewJob()">Preview Job</ion-button>
+        </section>
+    </div>
+    <div *ngIf="jobCardComplete">
+        <ion-card>
+            <ion-card-header>
+                <ion-card-title>{{jobTitle}}</ion-card-title>
+                <ion-card-subtitle>{{userName}}</ion-card-subtitle>
+                <ion-card-subtitle><i>{{jobLocation}}</i></ion-card-subtitle>
+            </ion-card-header>
+
+            <ion-card-content>
+                {{jobDescription}}
+            </ion-card-content>
+            <ion-item>
+                <ion-badge slot="start" color="tertiary">{{currencyValue}}</ion-badge>
+            </ion-item>
+        </ion-card>
+        <br>
+        <br>
+        <section class="centered-content-column">
+            <ion-button expand="block" class="button-width" (click)="editJob()">Edit Job</ion-button>
+            <ion-button expand="block" class="button-width" (click)="submitJob()">Submit Job</ion-button>
+        </section>
+    </div>
+</ion-content>

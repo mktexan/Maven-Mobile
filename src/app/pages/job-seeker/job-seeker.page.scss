@@ -1,0 +1,32 @@
+:host {
+  ion-content {
+    --background: var(--ion-color-primary);
+  }
+
+  ion-list {
+    &.list-md {
+      padding: 0;
+    }
+  }
+
+  img {
+    &.activated,
+    &:active {
+      opacity: 0.75;
+    }
+  }
+  .fixer {
+    // --background:url("/assets/img/profile.png") 0 0/100% 100% no-repeat;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .maven-header {
+    // background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,0,0,0.89) 0%), url('/assets/img/maven-black.jpg');
+    --background: var(--ion-color-primary);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}

@@ -1,0 +1,69 @@
+<ion-header class="">
+    <ion-toolbar color="light" class="ion-no-lines">
+        <div class="flexed">
+            <div>
+                <ion-buttons slot="start">
+                    <ion-menu-button color="dark"></ion-menu-button>
+                </ion-buttons>
+            </div>
+            <div>
+                <div class="text-holder link-color">
+                    <h5 color="dark" style="color: black;">{{'Jobs' | translate}}</h5>
+                </div>
+            </div>
+            <div>
+                <div class="flex-set " (click)="goBack()">
+                    <ion-icon name="chevron-back-outline" class="icon-size"></ion-icon>
+                </div>
+            </div>
+        </div>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+    <ion-list>
+        <ion-radio-group value="custom">
+            <ion-item *ngIf="showCustomOption">
+                <ion-label>{{'Custom Tag Search' | translate}}</ion-label>
+                <ion-radio slot="start" value="custom" (click)="customTags()"></ion-radio>
+            </ion-item>
+
+            <ion-item *ngIf="showCustomOption">
+                <ion-label>{{'Search Jobs Based On My Tags' | translate}}</ion-label>
+                <ion-radio slot="start" value="myTags" (click)="myTagsList()"></ion-radio>
+            </ion-item>
+        </ion-radio-group>
+    </ion-list>
+    <ion-searchbar *ngIf="showSearchBar" #searchBar (ionInput)="onKeyPress(searchBar.value)"></ion-searchbar>
+    <div *ngIf="!data" class="centered">
+        <ion-spinner name="dots"></ion-spinner>
+    </div>
+    <ion-item *ngFor="let job of jobList" id="{{job._id}}" class="animated bounceInLeft ion-no-lines" lines="none">
+        <ion-card class="centered-no-margin" style="width: 100%;">
+            <ion-card-header class = "testImage">
+                <ion-card-title>{{job.title}}</ion-card-title>
+                <br>
+                <ion-card-subtitle>{{job.companyName}}</ion-card-subtitle>
+                <ion-card-subtitle><i>{{job.location}}</i></ion-card-subtitle>
+                <ion-card-subtitle><i>Job created {{fixDate(job.creationDate)}}</i></ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+                <p>{{job.description}}</p>
+                <br>
+                <ion-chip outline *ngFor="let jobTags of job.tags" class="animated">
+                    <ion-icon name="pricetag" color="tertiary"></ion-icon>
+                    <ion-label>{{jobTags}}</ion-label>
+                </ion-chip>
+                <div class="centered">
+                    <ion-icon name="checkmark-circle-outline" class="fontNew15 acceptButton"></ion-icon>
+                    <!-- <ion-icon name="thumbs-up-outline" class="icon-size"></ion-icon> -->
+                    <!-- <div class="centered">
+                        <h1>...</h1>
+                    </div> -->
+                    <!-- <ion-icon name="close-circle-outline" class="fontNew15 declineButton"></ion-icon> -->
+                    <!-- <ion-icon name="thumbs-down-outline" class="icon-size"></ion-icon> -->
+                </div>
+            </ion-card-content>
+        </ion-card>
+    </ion-item>
+</ion-content>

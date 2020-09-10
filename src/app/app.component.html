@@ -1,0 +1,45 @@
+<ion-app>
+  <ion-split-pane contentId="my-content">
+    <ion-menu color="dark" contentId="my-content">
+      <ion-header class="ion-no-border">
+      </ion-header>
+      <ion-content id="firstContent" class="ion-no-shadow">
+        <ion-list>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item *ngIf='isBusiness && largeScreen' color="secondary" (click)="navigateToAboutMe()">
+              <ion-icon name="people-outline" slot="start"></ion-icon>
+              <ion-label color="dark">
+                My Company
+              </ion-label>
+            </ion-item>
+            <ion-item *ngIf='!isBusiness && !largeScreen' color="secondary" (click)="navigateToAboutMe()">
+              <ion-icon name="home-outline" slot="start"></ion-icon>
+              <ion-label color="dark">
+                About Me
+              </ion-label>
+            </ion-item>
+            <ion-item *ngIf='isBusiness && !largeScreen' color="secondary" (click)="navigateToAboutMe()">
+              <ion-icon name="people-outline" slot="start"></ion-icon>
+              <ion-label color="dark">
+                My Company
+              </ion-label>
+            </ion-item>
+            <ion-item *ngIf='!largeScreen' color="secondary" (click)="goToTags()">
+              <ion-icon slot="start" name="pricetag-outline"></ion-icon>
+              <ion-label color="dark">
+                My Tags
+              </ion-label>
+            </ion-item>
+            <ion-item color="secondary" (click)="logout()">
+              <ion-icon slot="start" name="log-out-outline" color="dark"></ion-icon>
+              <ion-label color="dark">
+                Logout
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="my-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

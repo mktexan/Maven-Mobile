@@ -1,0 +1,7 @@
+{
+  "name": "Maven",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

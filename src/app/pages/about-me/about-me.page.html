@@ -1,0 +1,75 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="light" class="ion-no-lines">
+    <div class="flexed">
+      <div>
+        <ion-buttons slot="start">
+          <ion-menu-button color="dark"></ion-menu-button>
+        </ion-buttons>
+      </div>
+      <div>
+        <div class="text-holder link-color">
+          <p color="dark" class="head-info">{{accountType | translate}}</p>
+        </div>
+      </div>
+      <div>
+        <div class="flex-set " (click)="goBack()">
+          <ion-icon name="chevron-back-outline" class="icon-size"></ion-icon>
+        </div>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+  <div class="centered">
+    <div class="box1" color="dark">
+      <div *ngIf="isBusiness">
+        <h5 color="dark" class="name">{{userName}}</h5>
+        <br>
+      </div>
+      <div class="aligned">
+        <ion-avatar slot="start" class="user-avatar">
+          <img [src]="profilePicture || profilePhoto" class="slide-image">
+        </ion-avatar>
+      </div>
+    </div>
+    <br>
+    <div class="box2">
+      <h4>{{'About Me' | translate}}</h4>
+      <br>
+      <div class="aligned-center">
+        <p>{{'Upload Resume' | translate}}</p>
+        <ion-icon name="cloud-upload-outline" class="icon-size"></ion-icon>
+      </div>
+      <br>
+      <ion-item class="ion-no-lines ion-no-border" lines="none">
+        <textarea lines="none" #userBiography class="textarea ion-no-norder ion-no-lines"
+          placeholder="Your biography here..."
+          (focusout)="updateBiography(userBiography.value)">{{fakeAboutMe}}</textarea>
+      </ion-item>
+    </div>
+    <br>
+    <ion-pane>
+      <h5>{{'My Work' | translate}}</h5>
+      <ion-icon name="add-circle-outline" class="icon-size" (click)="setPhoto()"></ion-icon>
+      <br>
+    </ion-pane>
+    <div>
+      <!-- <ion-grid *ngIf="portfolioImages.length > 0 && hasLocalImages">
+        <ion-row style="display: flex; justify-content: center;">
+          <ion-col size-lg="3" size-md="4" size-sm="6" size="6" *ngFor="let image of portfolioImages">
+            <img class="image-container" [src]="image.image" (click)="removeImage(image.uuid)">
+          </ion-col>
+        </ion-row>
+      </ion-grid> -->
+      <ion-grid>
+        <ion-row style="display: flex; justify-content: center;">
+          <ion-col size-lg="3" size-md="4" size-sm="6" size="6" *ngFor="let image of userImages">
+            <img class="image-container" [src]="image.image" (click)="removeImage(image.uuid)">
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <!-- More Pinterest floating gallery style -->
+    </div>
+  </div>
+</ion-content>

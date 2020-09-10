@@ -1,0 +1,45 @@
+<!-- <ion-header>
+    <ion-toolbar color="light" style="text-align: center;">
+        <h4>Business Setup</h4>
+    </ion-toolbar>
+</ion-header> -->
+<ion-content color="light" style = "text-align: center;">
+    <h3>Verification</h3>
+    <br>
+    <br>
+    <br>
+    <div>
+        <ion-item>
+            <!-- <ion-label position="stacked">Company Name 
+            </ion-label> -->
+            <ion-input required type="text" oninput="handleFirstNameValue(event)" placeholder="Company Name">
+            </ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+            <!-- <ion-label position=" stacked">Your Name
+            </ion-label> -->
+            <ion-input required type="text" oninput="handleFirstNameValue(event)" placeholder="Your Name"></ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+            <!-- <ion-label position="stacked">Cell Number
+            </ion-label> -->
+            <ion-input type="tel" placeholder="Cell Number"></ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+            <ion-label>Launch Date</ion-label>
+            <ion-datetime value="1990-02-19" placeholder="Select Date"></ion-datetime>
+        </ion-item>
+        <br>
+        <ion-item>
+            <ion-label position="stacked">Address</ion-label>
+            <ion-input placeholder="Address Line 1"></ion-input>
+            <ion-input placeholder="Address Line 2"></ion-input>
+            <ion-input placeholder="City"></ion-input>
+            <ion-input placeholder="State"></ion-input>
+            <ion-input placeholder="Zip Code"></ion-input>
+        </ion-item>
+    </div>
+</ion-content>

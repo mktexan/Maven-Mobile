@@ -1,0 +1,47 @@
+:host {
+  ion-content {
+    // --ion-color-medium: linear-gradient(162deg, rgba(56, 70, 108, .8) 20%, rgba(56, 70, 108, .8) 100%), url('/assets/icon/maven.jpg')  0 0/100% 50% no-repeat;
+    --background: var(--ion-color-dark);
+  }
+
+  ion-list {
+    &.list-md {
+      padding: 0;
+    }
+  }
+
+  img {
+    &.activated,
+    &:active {
+      opacity: 0.75;
+    }
+  }
+  .fixer {
+    // --background:url("/assets/img/profile.png") 0 0/100% 100% no-repeat;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .maven-header {
+    --background: var(--ion-color-dark);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+.local {
+}
+
+.color-fix {
+  --background: var(--ion-color-dark);
+}
+
+.dark-text {
+  color: black;
+}
+
+.dark-header {
+  --background: var(--ion-color-dark);
+}

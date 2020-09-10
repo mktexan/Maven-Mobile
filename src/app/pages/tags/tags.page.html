@@ -1,0 +1,53 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="light" class="ion-no-lines">
+    <div class="flexed">
+      <div>
+        <ion-buttons slot="start">
+          <ion-menu-button color="dark"></ion-menu-button>
+        </ion-buttons>
+      </div>
+      <div>
+        <div class="text-holder">
+          <p color="dark" class="head-info maven-text">{{'Tags' | translate}}</p>
+        </div>
+      </div>
+      <div>
+        <div class="flex-set " (click)="goBack()">
+          <ion-icon name="chevron-back-outline" class="icon-size"></ion-icon>
+        </div>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+  <div class="centered">
+    <h5>{{'My Tags' | translate}}</h5>
+    <br>
+    <ion-item lines="none">
+      <p class="descriptive-text">
+        <i>{{'Tags ' | translate}}</i>{{'are the way you describe your business or self to others on ' | translate}}<i
+          class="maven-text">{{'Maven.' | translate}}</i> {{'Add custom tags below and they
+          will help others find you!' | translate}}</p>
+    </ion-item>
+    <ion-item class="centered">
+      <ion-input clearOnEdit="true" clearInput="true" #tag type="text" required
+        placeholder="{{'Enter tag here' | translate}}">
+      </ion-input>
+    </ion-item>
+    <br>
+    <ion-button (click)="addTag(tag.value)">
+      <ion-icon slot="start" name="pricetag" size="small"></ion-icon>
+      {{'Add Tag' | translate}}
+    </ion-button>
+  </div>
+  <br>
+  <br>
+  <ion-list class="text-center">
+    <ion-chip outline *ngFor="let tag of userTags" class="animated">
+      <ion-icon name="pricetag" color="tertiary"></ion-icon>
+      <ion-label>{{tag}}</ion-label>
+      <ion-icon name="close" (click)=removeTag(tag)></ion-icon>
+    </ion-chip>
+  </ion-list>
+</ion-content>

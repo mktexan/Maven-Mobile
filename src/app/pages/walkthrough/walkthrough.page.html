@@ -1,0 +1,51 @@
+<ion-content class="bg-dark">
+  <ion-slides pager="true" dir="ltr" options="slideOpts" class="animated fadeIn slower bg-dark">
+    <ion-slide *ngFor="let slide of slideList">
+      <div class="button-space bg-dark">
+        <div class="bg-dark button-padding">
+          <img [src]="slide.image" alt="fireIonic icons" class="slide-image animated fadeInDown slow ion-margin-bottom"
+            style="max-width: 155px !important; border-radius: 50%;">
+          <!-- <h1 class="slide-title text-white animated fadeIn" [innerHTML]="slide.title"></h1> -->
+          <div class="button-space ion-padding">
+            <ion-text color="light">
+              <p [innerHTML]="slide.description" class="animated fadeIn"></p>
+            </ion-text>
+          </div>
+        </div>
+        <div class="button-space bg-light container-padding">
+          <div style="padding-top: 21%;">
+            <ion-button size="large" expand="full" shape="round" (click)="onSlideNext()" color="dark">
+              <ion-ripple-effect></ion-ripple-effect>
+              <ion-text color="light">Next</ion-text>
+              <ion-icon name="arrow-forward-outline" color="light" slot="end"></ion-icon>
+            </ion-button>
+          </div>
+        </div>
+      </div>
+
+    </ion-slide>
+    <ion-slide class="bg-dark">
+      <div class="w100 button-space">
+        <div class="bg-dark button-padding">
+          <img src="assets/img/maven-black.jpg" alt="fireIonic" class="slide-image animated fadeInDown slow"
+            style="max-width: 155px !important;">
+          <hr>
+          <div class="button-space container-padding">
+            <div style="padding-top: 21%;" class="button-padding">
+              <ion-button size="large" expand="full" shape="round" (click)="openLoginPage()" color="light"
+                class="ion-margin-top">
+                <ion-ripple-effect></ion-ripple-effect>
+                Join the club
+              </ion-button>
+              <!-- <ion-button size="large" expand="full" shape="round" color="dark" margin-top (click)="openHomeLocation()">
+                <ion-ripple-effect></ion-ripple-effect>
+                Get Started
+              </ion-button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </ion-slide>
+  </ion-slides>
+
+</ion-content>

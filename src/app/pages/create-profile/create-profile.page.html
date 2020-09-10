@@ -1,0 +1,18 @@
+<ion-content class="animated fadeIn login auth-page">
+  <div class="f-height bg-dark" (click)="navigateToInfluencer()">
+    <ion-text color="light">I'm an....</ion-text>
+    <div class="center2">
+      <ion-text color="light">
+        {{ 'auth.influencer' | translate }}
+      </ion-text>
+    </div>
+  </div>
+
+  <div class="f-height" (click)="navigateToBusiness()">
+    <div class="center1">
+      <ion-text color="dark">
+        {{ 'auth.business' | translate }}
+      </ion-text>
+    </div>
+  </div>
+</ion-content>

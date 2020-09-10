@@ -1,0 +1,128 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
+    <div class="text-holder link-color">
+      <p color="tertiary" class="head-info">Job Seeker</p>
+    </div>
+    <div class='unread-mail-icon'>
+      <!-- <ion-icon name="mail-unread-outline" color='tertiary' (click)="presentModal()"></ion-icon> -->
+      <!-- <ion-icon name="chatbubble-outline"></ion-icon> -->
+      <ion-icon name="chatbubbles-outline" color="secondary" (click)="presentModal()"></ion-icon>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="dark">
+  <div class="container">
+    <div class="box1 fixer maven-header">
+      <div class="inner-box">
+        <div class="centered">
+          <h3 color="tertiary">{{userName}}</h3>
+          <br>
+          <div style="display: flex; justify-content: center;">
+            <ion-avatar slot="start" class="user-avatar" style="height: 145px;width: 145px;">
+              <img [src]="profilePicture || profilePhoto" class="slide-image" (click)="setPhoto()">
+            </ion-avatar>
+          </div>
+          <br>
+          <ion-text color='light'>{{locality}}</ion-text>
+        </div>
+        <div class="inline">
+          <div class="ion-padding">
+            <div class="flexed-column">
+              <!-- <ion-icon name="checkmark-circle-outline" *ngIf="twitterActive"></ion-icon>
+              <ion-icon name="close-circle-outline" *ngIf="!twitterActive" (click)="linkTwitter()"></ion-icon> -->
+              <br>
+              <ion-icon name="logo-twitter" class="logo" (click)="linkTwitter()">
+              </ion-icon>
+            </div>
+          </div>
+          <div class="ion-padding">
+            <div class="flexed-column">
+              <!-- <ion-icon name="checkmark-circle-outline" *ngIf="instagramActive"></ion-icon>
+              <ion-icon name="close-circle-outline" *ngIf="!instagramActive" (click)="linkInstagram()"></ion-icon> -->
+              <br>
+              <ion-icon name="logo-instagram" class="logo" (click)="linkInstagram()"></ion-icon>
+            </div>
+          </div>
+          <div class="ion-padding">
+            <div class="flexed-column">
+              <!-- <ion-icon name="checkmark-circle-outline" *ngIf="facebookActive"></ion-icon>
+              <ion-icon name="close-circle-outline" *ngIf="!facebookActive" (click)="linkFacebook()"></ion-icon> -->
+              <br>
+              <ion-icon name="logo-facebook" class="logo" (click)="linkFacebook()">
+              </ion-icon>
+            </div>
+          </div>
+          <div class="ion-padding">
+            <div class="flexed-column">
+              <!-- <ion-icon name="checkmark-circle-outline" *ngIf="snapChatActive"></ion-icon>
+              <ion-icon name="close-circle-outline" *ngIf="!snapChatActive" (click)="linkSnapChat()"></ion-icon> -->
+              <br>
+              <ion-icon name="logo-snapchat" class="logo" (click)="linkSnapChat()">
+              </ion-icon>
+            </div>
+          </div>
+          <div class="ion-padding">
+            <div class="flexed-column">
+              <!-- <ion-icon name="checkmark-circle-outline" *ngIf="linkedinActive"></ion-icon>
+              <ion-icon name="close-circle-outline" *ngIf="!linkedinActive" (click)="linkLinkedin()"></ion-icon> -->
+              <br>
+              <ion-icon name="logo-linkedin" class="logo" (click)="linkLinkedin()">
+              </ion-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="white full-height" style="border-top-right-radius: 20px;">
+      <div class="bottom">
+        <div class="ion-padding">
+          <div class="inner-box inner-2" (click)="goToJobs()">
+            <ion-button color="light" size="default" expand="block"  class="link-find-business" (click)="goToJobs()">
+              <ion-icon slot="start" name="cash-outline" color="dark"></ion-icon>
+              <b>{{'Find Job' | translate}}</b>
+            </ion-button>
+          </div>
+          <div class="inner-box inner-2" >
+            <ion-button (click)="goToTags()" class="link-find-business link-color-white" color="light">
+              <ion-icon slot="start" color="dark" name="pricetag" size="regular"></ion-icon>
+              <b>{{'My Tags' | translate}}</b>
+            </ion-button>
+          </div>
+          <div *ngIf='largeScreen' class="inner-box inner-2" (click)="goToAboutMe()">
+            <ion-button class="link-find-business link-color-white"  color="light" (click)="goToAboutMe()">
+              <ion-icon slot="start" color="dark" size="regular" name="person-outline"></ion-icon>
+              <b>{{'About Me' | translate}}</b>
+            </ion-button>
+          </div>
+        </div>
+      </div>
+      <div class="footer flexed white" on-swipe-up="presentModal()">
+        <div class="flexed">
+          <ion-avatar slot="start" class="user-avatar avatar">
+            <img [src]="profilePicture || profilePhoto" class="slide-image chats-small-pic" (click)="setPhoto()">
+          </ion-avatar>
+          <div>
+            <ion-icon name="radio-button-on-outline" *ngIf="socketConnected" class="icon-specs connected"></ion-icon>
+            <ion-icon name="radio-button-on-outline" *ngIf="!socketConnected" class="icon-specs disconnected">
+            </ion-icon>
+          </div>
+        </div>
+
+        <div class="flexed-row" *ngIf="userIsTyping">
+          <ion-avatar slot="start" class="avatar user-avatar flexed-row">
+            <ion-icon name="phone-portrait-outline" class="" color="dark"></ion-icon>
+            <ion-spinner name="dots" class=""></ion-spinner>
+          </ion-avatar>
+        </div>
+
+        <div class="ion-padding flex-set">
+          <ion-icon name="settings-outline" color="dark" class="icon-size" (click)="goToSettings()"></ion-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

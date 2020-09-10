@@ -1,0 +1,113 @@
+<ion-content class="animated fadeIn login auth-page bg-dark">
+
+  <div class="auth-content max-height">
+    <div class="bg-dark ion-padding">
+      <!-- Logo -->
+      <div class="animated fadeInDown ion-padding-horizontal ion-text-center">
+        <div class="logo"></div>
+        <h3 class="ion-no-margin">
+          <ion-text color=" light" class="fw700">
+            {{ 'auth.button.register' | translate }}
+          </ion-text>
+        </h3>
+      </div>
+
+      <!-- Register form -->
+      <form [formGroup]="onRegisterForm" class="list-form">
+        <ion-item lines="none" class="animated fadeInUp ion-no-padding">
+          <ion-label>
+            <ion-icon name="reader-outline"></ion-icon>
+            {{'Account Type' | translate}}
+          </ion-label>
+          <ion-select placeholder="Select One" class="not-active" formControlName="accountType" #C
+            (ionChange)="onChange(C.value)">
+            <ion-select-option value="Business">{{ 'Business' | translate }}</ion-select-option>
+            <ion-select-option value="Influencer">{{ 'Influencer' | translate }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item lines="none" class="animated fadeInUp ion-no-padding">
+          <ion-label position="floating">
+            <ion-icon name="mail-outline"></ion-icon>
+            <!--outline variant-->
+            {{ 'auth.form.email' | translate }}
+          </ion-label>
+          <ion-input color="secondary" type="email" formControlName="email"></ion-input>
+        </ion-item>
+
+        <p class="text08 msg ion-no-margin" *ngIf="f.email.errors && hasError">
+          <ion-text color="light" *ngIf="f.email.errors.required">
+            {{ 'auth.form.error.email' | translate }}
+          </ion-text>
+          <ion-text color="light" *ngIf="f.email.errors.email">
+            {{ 'auth.form.error.email.isvalid' | translate }}
+          </ion-text>
+        </p>
+
+        <ion-item lines="none" class="animated fadeInUp ion-no-padding">
+          <ion-label position="floating">
+            <ion-icon name="person-outline" item-start></ion-icon>
+            {{ userNameOrCompany | translate }}
+          </ion-label>
+          <ion-input color="secondary" type="text" formControlName="userName"></ion-input>
+        </ion-item>
+
+        <ion-item lines="none" class="animated fadeInUp ion-no-padding">
+          <ion-label position="floating">
+            <ion-icon name="lock-closed-outline" item-start></ion-icon>
+            {{ 'auth.form.password' | translate }}
+          </ion-label>
+          <ion-input color="secondary" type="password" formControlName="password"></ion-input>
+        </ion-item>
+        <p class="text08 msg ion-no-margin" *ngIf="f.password.errors && hasError">
+          <ion-text color="light" *ngIf="f.password.errors.required">
+            {{ 'auth.form.error.password' | translate }}
+          </ion-text>
+          <ion-text color="light" *ngIf="f.password.errors.minlength">
+            {{ 'auth.form.error.password.minlength' | translate }}
+          </ion-text>
+        </p>
+
+        <ion-item lines="none" class="animated fadeInUp ion-no-padding">
+          <ion-label position="floating">
+            <ion-icon name="lock-closed-outline" item-start></ion-icon>
+            {{ 'auth.form.confirm' | translate }}
+          </ion-label>
+          <ion-input color="secondary" type="password" formControlName="confirmPassword"></ion-input>
+        </ion-item>
+        <div *ngIf="f.confirmPassword.errors && hasError">
+          <p class="text08 msg ion-no-margin" *ngIf="f.confirmPassword.errors.required">
+            <ion-text color="light">
+              {{ 'auth.form.error.password' | translate }}
+            </ion-text>
+          </p>
+          <p class="text08 msg ion-no-margin" *ngIf="f.confirmPassword.errors.minlength">
+            <ion-text color="light">
+              {{ 'auth.form.error.password.minlength' | translate }}
+            </ion-text>
+          </p>
+          <p class="text08 msg" *ngIf="f.password.value !== f.confirmPassword.value">
+            <ion-text color="danger">{{ 'auth.form.error.mismatch' | translate }}</ion-text>
+          </p>
+        </div>
+      </form>
+    </div>
+
+    <div class="bg-light max-height ion-padding">
+      <div class="ion-margin-top">
+        <ion-button icon-left expand="full" size="default" shape="round" color="dark" (click)="register(onRegisterForm)">
+          <!-- [disabled]="isOffline" -->
+          {{ 'auth.button.register' | translate }}
+        </ion-button>
+      </div>
+
+      <!-- Other links -->
+      <div class="ion-text-center ion-margin-top">
+        <span (click)="goToLogin()" tappable>
+          <ion-text color="dark">{{ 'auth.register.question' | translate }}
+            <strong>{{ 'auth.button.login' | translate }}</strong></ion-text>
+        </span>
+      </div>
+    </div>
+  </div>
+</ion-content>

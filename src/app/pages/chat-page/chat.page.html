@@ -1,0 +1,230 @@
+<ion-header class="ion-no-border ion-no-lines">
+    <ion-toolbar class="ion-no-border ion-no-lines">
+        <div class="flexed ion-no-border ion-no-lines">
+            <div class="flex-set-row ion-no-border ion-no-lines">
+                <div>
+                    <ion-avatar slot="start" class="avatar user-avatar">
+                        <img [src]="profilePhoto || setPhoto" class="slide-image chats-small-pic">
+                        <ion-icon name="radio-button-on-outline" *ngIf="socketConnected"
+                            class="icon-specs-top connected">
+                        </ion-icon>
+                        <ion-icon name="radio-button-on-outline" *ngIf="!socketConnected"
+                            class="icon-specs-top disconnected">
+                        </ion-icon>
+                        <ion-icon name="radio-button-on-outline" *ngIf="!socketConnected && socketConnecting"
+                            class="icon-specs-top connecting"></ion-icon>
+                    </ion-avatar>
+                </div>
+            </div>
+            <div class="ion-no-border ion-no-lines">
+                <h4 class="faded-text">Chats</h4>
+            </div>
+            <div class="flex-set ion-padding" (click)="goBack()">
+                <ion-icon name="chevron-back-outline" class="icon-size"></ion-icon>
+            </div>
+        </div>
+    </ion-toolbar>
+</ion-header>
+<ion-content color="light">
+    <div class="container ion-no-border ion-lines-lines">
+        <div class="box1 ion-no-border ion-lines-lines">
+            <div class="">
+                <!-- (keyup.enter)="searchForUser(q.value)" -->
+                <ion-searchbar #q showCancelButton="focus" (ionChange)="searchForUser(q.value)">
+                </ion-searchbar>
+            </div>
+            <br>
+            <div class="flexed-center">
+                <ion-list class="width-fix" *ngIf="!recentConversationsLoaded">
+                    <div>
+                        <ion-list>
+                            <ion-item>
+                                <ion-avatar slot="start">
+                                    <ion-skeleton-text animated></ion-skeleton-text>
+                                </ion-avatar>
+                            </ion-item>
+                        </ion-list>
+                    </div>
+                </ion-list>
+                <div class="flexed">
+                    <ion-slides pager="false" [options]="{pagination: false}">
+                        <ion-item *ngFor="let user of recentConversationList" (click)="goToIndividualChat(user.email)"
+                            class="flexed padding-item" lines="none">
+                            <ion-slide class = "centered-content-column">
+                                <ion-avatar slot="start" class="relative border-fix">
+                                    <img [src]="blankUser" *ngIf="!user.profilePicture"
+                                        class="recent-conversation-img img-specs">
+                                    <img *ngIf="user.profilePicture" [src]="user.profilePicture"
+                                        class="recent-conversation-img img-specs">
+                                    <ion-icon name="radio-button-on-outline" *ngIf="user.online"
+                                        class="recent-conversation-icon connected">
+                                    </ion-icon>
+                                    <ion-icon name="radio-button-on-outline" *ngIf="!user.online"
+                                        class="recent-conversation-icon disconnected"></ion-icon>
+                                        <ion-label>
+                                            <h4>{{user.userName}}</h4>
+                                        </ion-label>
+                                </ion-avatar>
+                            </ion-slide>
+                        </ion-item>
+                    </ion-slides>
+                </div>
+            </div>
+            <div *ngIf="searchActive" class="flexed-center">
+                <h4>Search</h4>
+            </div>
+            <div class="flexed-left">
+                <ion-list class="width-fix">
+                    <div *ngIf="!dataLoadedSearch && searchStarted">
+                        <ion-list>
+                            <ion-item>
+                                <ion-avatar slot="start">
+                                    <ion-skeleton-text animated></ion-skeleton-text>
+                                </ion-avatar>
+                                <ion-label>
+                                    <h3>
+                                        <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                                    </h3>
+                                    <p>
+                                        <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                                    </p>
+                                    <p>
+                                        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                                    </p>
+                                </ion-label>
+                            </ion-item>
+                            <ion-item>
+                                <ion-avatar slot="start">
+                                    <ion-skeleton-text animated></ion-skeleton-text>
+                                </ion-avatar>
+                                <ion-label>
+                                    <h3>
+                                        <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                                    </h3>
+                                    <p>
+                                        <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                                    </p>
+                                    <p>
+                                        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                                    </p>
+                                </ion-label>
+                            </ion-item>
+                            <ion-item>
+                                <ion-avatar slot="start">
+                                    <ion-skeleton-text animated></ion-skeleton-text>
+                                </ion-avatar>
+                                <ion-label>
+                                    <h3>
+                                        <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                                    </h3>
+                                    <p>
+                                        <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                                    </p>
+                                    <p>
+                                        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                                    </p>
+                                </ion-label>
+                            </ion-item>
+                        </ion-list>
+                    </div>
+                    <ion-item *ngFor="let user of userList" (click)="goToIndividualChat(user.email)"
+                        (click)="setRecentConversations(user.email)" lines="none">
+                        <ion-avatar slot="start">
+                            <img [src]="blankUser" *ngIf="!user.profilePicture">
+                            <img *ngIf="user.profilePicture" [src]="user.profilePicture">
+                            <ion-icon name="radio-button-on-outline" *ngIf="user.online" class="icon-specs connected">
+                            </ion-icon>
+                            <ion-icon name="radio-button-on-outline" *ngIf="!user.online"
+                                class="icon-specs disconnected"></ion-icon>
+                        </ion-avatar>
+                        <ion-label>
+                            <h2>{{user.userName}}</h2>
+                            <!-- <p>{{user.email}}</p> -->
+                            <p>{{capitalizeName(user.accountType)}}</p>
+                        </ion-label>
+                    </ion-item>
+                </ion-list>
+            </div>
+            <br>
+            <br>
+            <div *ngIf="unreadMail" class="flexed-center">
+            </div>
+            <div class="flexed-left">
+                <ion-list class="width-fix">
+                    <div *ngIf="!unreadMailLoaded">
+                        <ion-item>
+                            <ion-avatar slot="start">
+                                <ion-skeleton-text animated></ion-skeleton-text>
+                            </ion-avatar>
+                            <ion-label>
+                                <h3>
+                                    <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                                </h3>
+                                <p>
+                                    <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                                </p>
+                                <p>
+                                    <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                                </p>
+                            </ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-avatar slot="start">
+                                <ion-skeleton-text animated></ion-skeleton-text>
+                            </ion-avatar>
+                            <ion-label>
+                                <h3>
+                                    <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                                </h3>
+                                <p>
+                                    <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                                </p>
+                                <p>
+                                    <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                                </p>
+                            </ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-avatar slot="start">
+                                <ion-skeleton-text animated></ion-skeleton-text>
+                            </ion-avatar>
+                            <ion-label>
+                                <h3>
+                                    <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                                </h3>
+                                <p>
+                                    <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                                </p>
+                                <p>
+                                    <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                                </p>
+                            </ion-label>
+                        </ion-item>
+                    </div>
+                    <ion-item *ngFor="let user of unreadMailList" (click)="goToIndividualChat(user.email)"
+                        (click)="clearUnreadMail(user.email)" lines="none">
+                        <ion-avatar slot="start">
+                            <img [src]="blankUser" *ngIf="!user.profilePicture">
+                            <img *ngIf="user.profilePicture" [src]="user.profilePicture">
+                            <ion-icon name="radio-button-on-outline" *ngIf="user.online" class="icon-specs connected">
+                            </ion-icon>
+                            <ion-icon name="radio-button-on-outline" *ngIf="!user.online"
+                                class="icon-specs disconnected"></ion-icon>
+                        </ion-avatar>
+                        <ion-label>
+                            <h2>{{user.userName}}</h2>
+                            <!-- <p>{{user.email}}</p> -->
+                            <p>{{capitalizeName(user.accountType)}}</p>
+                        </ion-label>
+                        <ion-item lines="none">
+                            <ion-icon name="mail-unread-outline"></ion-icon>
+                        </ion-item>
+                    </ion-item>
+                </ion-list>
+            </div>
+        </div>
+        <div class="box2 ion-no-border ion-lines-lines">
+            <div class="inner-box"></div>
+        </div>
+    </div>
+</ion-content>

@@ -1,0 +1,34 @@
+:host {
+    ion-content {
+        --background: var(--ion-color-secondary);
+    }
+
+    ion-list {
+        &.list-md {
+            padding: 0;
+        }
+    }
+
+    ion-avatar {
+        img {
+            background-color: var(--ion-color-dark);
+        }
+    }
+}
+
+ion-app.platform-ios12 ion-content {
+    pointer-events: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+
+ion-button {
+    font-size: 75%;
+    --background: var(--ion-color-primary);
+    // --box-shadow: 0 2px 2px rgba( var(--ion-color-primary-rgb), .65);
+}
+
+ion-list-header {
+    --color: var(--ion-color-light-shade);
+    --background: var(--ion-color-dark-shade);
+}
